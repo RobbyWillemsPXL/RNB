@@ -1,0 +1,6 @@
+ID;taskID;title;description;dueDate;status_code
+b997e8f2-4804-4a7f-bcfb-d81f0f4a5da4;Task1;Buy Groceries;Purchase vegetables, fruits, and dairy products.;2021-06-27;Pending
+2b44ff21-9660-4c78-86d5-0e796edfa991;Task2;Complete Project Report;Finish the final report for the project and submit it.;2021-06-27;Completed
+a48dbf42-2750-43b2-bce6-018a395271a2;Task3;Schedule Doctor Appointment;Call the clinic and schedule an appointment with Dr. Smith.;2021-06-27;Pending
+5e9e085d-30fb-4488-98bb-1e3202379232;Task4;Plan Birthday Party;Organize a birthday party for John.;2021-06-27;Pending
+a478e071-7830-44be-a83b-ba69876bf5ec;Task5;Clean the House;Do a thorough cleaning of the house.;2021-06-27;Completed

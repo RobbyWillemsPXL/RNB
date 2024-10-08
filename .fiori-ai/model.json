@@ -1,0 +1,272 @@
+{
+    "namespace": "todoListApp",
+    "entities": [
+        {
+            "name": "Tasks",
+            "label": "Task",
+            "associations": [
+                {
+                    "name": "Subtasks",
+                    "target": "Subtasks",
+                    "multiplicity": "many",
+                    "backAssociation": "tasks"
+                }
+            ],
+            "labelPlural": "Tasks",
+            "elements": [
+                {
+                    "name": "ID",
+                    "type": "UUID",
+                    "key": true,
+                    "label": ""
+                },
+                {
+                    "name": "taskID",
+                    "type": "String(50)",
+                    "label": "Task ID",
+                    "additionalInfo": "Unique identifier for each task",
+                    "essentialElement": true,
+                    "semanticKey": true
+                },
+                {
+                    "name": "title",
+                    "type": "String(100)",
+                    "label": "Title",
+                    "additionalInfo": "Title of the task",
+                    "essentialElement": true
+                },
+                {
+                    "name": "description",
+                    "type": "String(255)",
+                    "label": "Description",
+                    "additionalInfo": "Detailed description of the task",
+                    "essentialElement": false
+                },
+                {
+                    "name": "dueDate",
+                    "type": "Date",
+                    "label": "Due Date",
+                    "additionalInfo": "Due date for the task",
+                    "essentialElement": false
+                },
+                {
+                    "name": "status",
+                    "type": "String(20)",
+                    "label": "Status",
+                    "additionalInfo": "Status of the task, e.g., 'Pending', 'Completed'",
+                    "essentialElement": true,
+                    "values": [
+                        "Pending",
+                        "Completed"
+                    ],
+                    "hasFixedValuesList": true,
+                    "hasColorsOrCriticality": true,
+                    "reason": "The status of a task can be considered good or bad. 'Pending' indicates that the task is not yet completed, which can be seen as negative or critical, while 'Completed' indicates that the task is done, which is positive.",
+                    "mapping": [
+                        {
+                            "value": "Pending",
+                            "colorOrCriticality": "critical",
+                            "reason": "A pending task is not yet completed and may require attention."
+                        },
+                        {
+                            "value": "Completed",
+                            "colorOrCriticality": "positive",
+                            "reason": "A completed task is finished and can be considered a positive outcome."
+                        }
+                    ],
+                    "criticalities": [
+                        2,
+                        3
+                    ]
+                }
+            ]
+        },
+        {
+            "name": "Subtasks",
+            "label": "Subtask",
+            "associations": [
+                {
+                    "name": "tasks",
+                    "target": "Tasks",
+                    "multiplicity": "one",
+                    "isComposition": false
+                }
+            ],
+            "labelPlural": "Subtasks",
+            "elements": [
+                {
+                    "name": "ID",
+                    "type": "UUID",
+                    "key": true,
+                    "label": ""
+                },
+                {
+                    "name": "subtaskID",
+                    "type": "String(50)",
+                    "label": "Subtask ID",
+                    "additionalInfo": "Unique identifier for each subtask",
+                    "essentialElement": true,
+                    "semanticKey": true
+                },
+                {
+                    "name": "taskID",
+                    "type": "String(50)",
+                    "label": "Task ID",
+                    "additionalInfo": "Identifier of the parent task",
+                    "essentialElement": true
+                },
+                {
+                    "name": "title",
+                    "type": "String(100)",
+                    "label": "Title",
+                    "additionalInfo": "Title of the subtask",
+                    "essentialElement": true
+                },
+                {
+                    "name": "description",
+                    "type": "String(255)",
+                    "label": "Description",
+                    "additionalInfo": "Detailed description of the subtask",
+                    "essentialElement": false
+                },
+                {
+                    "name": "status",
+                    "type": "String(20)",
+                    "label": "Status",
+                    "additionalInfo": "Status of the subtask, e.g., 'Pending', 'Completed'",
+                    "essentialElement": true,
+                    "values": [
+                        "Pending",
+                        "Completed"
+                    ],
+                    "hasFixedValuesList": true,
+                    "hasColorsOrCriticality": true,
+                    "reason": "The status of a subtask can also be considered good or bad. 'Pending' indicates that the subtask is not yet completed, which can be seen as negative or critical, while 'Completed' indicates that the subtask is done, which is positive.",
+                    "mapping": [
+                        {
+                            "value": "Pending",
+                            "colorOrCriticality": "critical",
+                            "reason": "A pending subtask is not yet completed and may require attention."
+                        },
+                        {
+                            "value": "Completed",
+                            "colorOrCriticality": "positive",
+                            "reason": "A completed subtask is finished and can be considered a positive outcome."
+                        }
+                    ],
+                    "criticalities": [
+                        2,
+                        3
+                    ]
+                }
+            ]
+        }
+    ],
+    "service": {
+        "name": "todoListAppSrv",
+        "path": "srv/service.cds"
+    },
+    "applications": [
+        {
+            "pages": [
+                {
+                    "type": "ListReport",
+                    "entityType": "Tasks",
+                    "listReportContent": {
+                        "loadDataOnAppLaunch": "Enabled",
+                        "tables": [
+                            {
+                                "title": "Tasks",
+                                "id": "tasksTable",
+                                "baseEntityType": "Tasks",
+                                "columns": [
+                                    "taskID",
+                                    "title",
+                                    "description",
+                                    "dueDate",
+                                    "status"
+                                ]
+                            }
+                        ],
+                        "filters": [
+                            "taskID",
+                            "title",
+                            "dueDate",
+                            "status"
+                        ]
+                    }
+                },
+                {
+                    "type": "ObjectPage",
+                    "entityType": "Tasks",
+                    "objectPageContent": {
+                        "tableSectionAssociations": [
+                            "Subtasks"
+                        ],
+                        "sections": [
+                            {
+                                "title": "Task Details",
+                                "id": "taskDetails",
+                                "isTableSection": false,
+                                "fields": [
+                                    "taskID",
+                                    "title",
+                                    "description",
+                                    "dueDate",
+                                    "status"
+                                ]
+                            },
+                            {
+                                "title": "Subtasks",
+                                "id": "subtasks",
+                                "isTableSection": true,
+                                "fields": [
+                                    "Subtasks/subtaskID",
+                                    "Subtasks/taskID",
+                                    "Subtasks/title",
+                                    "Subtasks/description",
+                                    "Subtasks/status"
+                                ]
+                            }
+                        ],
+                        "tabs": [
+                            {
+                                "title": "Main",
+                                "id": "mainTab",
+                                "subsections": [
+                                    "taskDetails",
+                                    "subtasks"
+                                ]
+                            }
+                        ]
+                    }
+                },
+                {
+                    "type": "ObjectPage",
+                    "entityType": "Subtasks",
+                    "objectPageContent": {
+                        "tableSectionAssociations": [],
+                        "sections": [
+                            {
+                                "title": "Subtasks",
+                                "id": "subtasksSection",
+                                "isTableSection": true,
+                                "fields": []
+                            }
+                        ],
+                        "tabs": [
+                            {
+                                "title": "Subtasks",
+                                "id": "subtasksTab",
+                                "subsections": [
+                                    "subtasksSection"
+                                ]
+                            }
+                        ]
+                    }
+                }
+            ],
+            "name": "todoList"
+        }
+    ]
+}

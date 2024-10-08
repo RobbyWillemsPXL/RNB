@@ -1,0 +1,8 @@
+ID;subtaskID;taskID;title;description;status_code;tasks_ID
+b06e3df4-02dd-486a-abc1-252504dccc42;Subtask1;Task1;Buy Vegetables;Purchase carrots, potatoes, and spinach.;Pending;b997e8f2-4804-4a7f-bcfb-d81f0f4a5da4
+e5340d2e-1b38-4da7-80a2-56db7ce405a7;Subtask2;Task1;Buy Fruits;Purchase apples, bananas, and oranges.;Pending;b997e8f2-4804-4a7f-bcfb-d81f0f4a5da4
+466f35ca-2427-494d-b4af-12c44cd33ac4;Subtask3;Task1;Buy Dairy Products;Purchase milk, cheese, and yogurt.;Pending;b997e8f2-4804-4a7f-bcfb-d81f0f4a5da4
+af7f4615-61dd-4861-9284-ecb8e5a4d91f;Subtask4;Task2;Write Introduction;Draft the introduction section of the report.;Completed;2b44ff21-9660-4c78-86d5-0e796edfa991
+6481c087-a6cf-40ef-8fee-8e859972cb0e;Subtask5;Task2;Compile Data;Gather and compile all necessary data for the report.;Completed;2b44ff21-9660-4c78-86d5-0e796edfa991
+6c6273a6-4dbe-435c-9d0e-8ef064addde9;Subtask6;Task3;Call Clinic;Contact the clinic to check available slots.;Pending;a48dbf42-2750-43b2-bce6-018a395271a2
+d7bdaf6f-0f2b-47c8-8fdc-f80253cc4a37;Subtask7;Task4;Send Invitations;Send out invitations to friends and family.;Pending;5e9e085d-30fb-4488-98bb-1e3202379232
